@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqs4vjgj0cggq"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_dy32e"]
+radius = 0.2
+height = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_vt8r8"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="PrismMesh" id="PrismMesh_kdvaw"]
+size = Vector3(0.05, 0.1, 0.02)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3bfno"]
+top_radius = 0.01
+bottom_radius = 0.015
+height = 0.1
+
+[sub_resource type="Animation" id="Animation_783p5"]
+resource_name = "Flap"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightWing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, 0, 0, 0.026177, 0.999657, 0.2, 1, 0, 0, 0.052336, 0.99863, 0.3, 1, 0, 0, 0.0784591, 0.996917, 0.4, 1, 0, 0, 0.104528, 0.994522, 0.5, 1, 0, 0, 0.130526, 0.991445, 0.6, 1, 0, 0, 0.156434, 0.987688, 0.7, 1, 0, 0, 0.130526, 0.991445, 0.8, 1, 0, 0, 0.104528, 0.994522, 0.9, 1, 0, 0, 0.0784591, 0.996917, 1, 1, 0, 0, 0.052336, 0.99863, 1.1, 1, 0, 0, 0.026177, 0.999657, 1.2, 1, 0, 0, 0, 1, 1.3, 1, 0, 0, -0.026177, 0.999657, 1.4, 1, 0, 0, -0.052336, 0.99863, 1.5, 1, 0, 0, -0.0784591, 0.996917, 1.6, 1, 0, 0, -0.104528, 0.994522, 1.7, 1, 0, 0, -0.130526, 0.991445, 1.8, 1, 0, 0, -0.156434, 0.987688, 1.9, 1, 0, 0, -0.130526, 0.991445, 2, 1, 0, 0, -0.104528, 0.994522, 2.1, 1, 0, 0, -0.0784591, 0.996917, 2.2, 1, 0, 0, -0.052336, 0.99863, 2.3, 1, 0, 0, -0.026177, 0.999657)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftWing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, 0, 0, -0.0261769, 0.999657, 0.2, 1, 0, 0, -0.052336, 0.99863, 0.3, 1, 0, 0, -0.0784591, 0.996917, 0.4, 1, 0, 0, -0.104528, 0.994522, 0.5, 1, 0, 0, -0.130526, 0.991445, 0.6, 1, 0, 0, -0.156434, 0.987688, 0.7, 1, 0, 0, -0.130526, 0.991445, 0.8, 1, 0, 0, -0.104528, 0.994522, 0.9, 1, 0, 0, -0.0784591, 0.996917, 1, 1, 0, 0, -0.052336, 0.99863, 1.1, 1, 0, 0, -0.0261769, 0.999657, 1.2, 1, 0, 0, 0, 1, 1.3, 1, 0, 0, 0.0261769, 0.999657, 1.4, 1, 0, 0, 0.052336, 0.99863, 1.5, 1, 0, 0, 0.0784591, 0.996917, 1.6, 1, 0, 0, 0.104528, 0.994522, 1.7, 1, 0, 0, 0.130526, 0.991445, 1.8, 1, 0, 0, 0.156434, 0.987688, 1.9, 1, 0, 0, 0.130526, 0.991445, 2, 1, 0, 0, 0.104528, 0.994522, 2.1, 1, 0, 0, 0.0784591, 0.996917, 2.2, 1, 0, 0, 0.052336, 0.99863, 2.3, 1, 0, 0, 0.0261769, 0.999657)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ggfcp"]
+_data = {
+"Flap": SubResource("Animation_783p5")
+}
+
+[sub_resource type="PrismMesh" id="PrismMesh_bd5g0"]
+size = Vector3(0.05, 0.3, 0.2)
+
+[node name="Bird" type="Node3D"]
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.98023e-08, 0)
+mesh = SubResource("SphereMesh_dy32e")
+
+[node name="Head" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120705, -0.211077)
+mesh = SubResource("SphereMesh_vt8r8")
+
+[node name="Beak" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0894158, 0.995994, 0, -0.995994, 0.0894158, 0, 0.12701, -0.358386)
+mesh = SubResource("PrismMesh_kdvaw")
+
+[node name="Leg_left" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0815489, -0.128491, 0.0630094)
+mesh = SubResource("CylinderMesh_3bfno")
+
+[node name="Leg_right" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.082, -0.128, 0.063)
+mesh = SubResource("CylinderMesh_3bfno")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ggfcp")
+}
+
+[node name="RightWing" type="Node3D" parent="."]
+transform = Transform3D(0.982847, 0.184423, 0, -0.184423, 0.982847, 0, 0, 0, 1, 0.192491, 0, 0)
+
+[node name="Wing_right" type="MeshInstance3D" parent="RightWing"]
+transform = Transform3D(-4.47035e-08, 1, 0, -1, -4.47035e-08, 0, 0, 0, 1, 0.150359, 0, 0)
+mesh = SubResource("PrismMesh_bd5g0")
+skeleton = NodePath("../..")
+
+[node name="LeftWing" type="Node3D" parent="."]
+transform = Transform3D(0.982847, -0.184423, 0, 0.184423, 0.982847, 0, 0, 0, 1, -0.192, 0, 0)
+
+[node name="Wing_left" type="MeshInstance3D" parent="LeftWing"]
+transform = Transform3D(4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, -4.23516e-22, -3.82137e-15, 8.74228e-08, -1, -0.151, 0, 0)
+mesh = SubResource("PrismMesh_bd5g0")
+skeleton = NodePath("../..")
