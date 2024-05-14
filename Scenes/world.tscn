@@ -47,13 +47,13 @@ mesh = SubResource("PlaneMesh_k8tmt")
 skeleton = NodePath("../..")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.979498, -0.200119, -0.0231583, 0.180969, 0.823556, 0.537593, -0.0885102, -0.530762, 0.842887, 1.65093, 2.9801, -0.414986)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.02487, 0)
 
 [node name="Bird" parent="." instance=ExtResource("2_s2uwr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.00937, 2.4705, -0.903182)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.94528, 2.4705, -0.903182)
 
 [node name="Tree lowpoly" parent="." instance=ExtResource("3_joot3")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.61491, 0.0500002, -3.61687)
 
 [node name="Nest" parent="." instance=ExtResource("4_mnqxm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.80701, 2.08775, -2.41813)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.93981, -2.34027)
