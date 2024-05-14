@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgwmgweqm2bv6"]
+
+[ext_resource type="PackedScene" uid="uid://mknuutoxm7yc" path="res://Models/branch1.blend" id="1_yygyp"]
+
+[node name="Branch" type="Node3D"]
+
+[node name="branch1" parent="." instance=ExtResource("1_yygyp")]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b0f35i8af7g8e"]
+[gd_scene load_steps=12 format=3 uid="uid://b0f35i8af7g8e"]
 
 [ext_resource type="ArrayMesh" uid="uid://dceoa6c0go1il" path="res://Mesh.res" id="1_663xo"]
 [ext_resource type="PackedScene" uid="uid://bqs4vjgj0cggq" path="res://Scenes/bird.tscn" id="2_s2uwr"]
 [ext_resource type="PackedScene" uid="uid://cdb5jv77h7nn4" path="res://Models/Tree lowpoly.blend" id="3_joot3"]
+[ext_resource type="PackedScene" uid="uid://dlx7a38q6j02b" path="res://Scenes/nest.tscn" id="4_mnqxm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3jdpj"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -53,7 +54,7 @@ mesh = SubResource("PlaneMesh_k8tmt")
 skeleton = NodePath("../..")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.0270211, -0.952587, 0.303063, 0.0845967, 0.304265, 0.948824, -0.996049, -8.04115e-08, 0.0888073, 2.93264, 22.0764, -0.414986)
+transform = Transform3D(0.291647, -0.231108, 0.928187, 0.0209832, 0.971685, 0.235345, -0.956296, -0.0491615, 0.288239, 3.66789, 2.69293, -0.414986)
 
 [node name="grass" type="MultiMeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
@@ -61,7 +62,10 @@ cast_shadow = 0
 multimesh = SubResource("MultiMesh_q64e0")
 
 [node name="Bird" parent="." instance=ExtResource("2_s2uwr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.00937, 2.4705, -0.903182)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.94528, 2.4705, -0.903182)
 
 [node name="Tree lowpoly" parent="." instance=ExtResource("3_joot3")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.61491, 0.0500002, -3.61687)
+
+[node name="Nest" parent="." instance=ExtResource("4_mnqxm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, -2)
