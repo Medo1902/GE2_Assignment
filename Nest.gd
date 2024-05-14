@@ -16,11 +16,12 @@ func add_random_branch():
 		var branch = brickScene.instantiate()
 		var random_pos = generate_random_position()
 		branch.global_transform.origin = random_pos
-		var direction = (random_pos - global_transform.origin).normalized()
+		var direction = (random_pos - Vector3.ZERO).normalized()
 		branch.look_at(random_pos + direction, Vector3.UP)
 		add_child(branch)
 		branches_count += 1
 		print("Branch added. Total branches: ", branches_count)
+
 
 
 func generate_random_position():
@@ -31,5 +32,6 @@ func generate_random_position():
 	var x = radius * cos(theta)
 	var y = height  # Lower variation in height to keep it flatter
 	var z = radius * sin(theta)
-	return global_transform.origin + Vector3(x, y, z)
+	return Vector3(x, y, z)  # Return local position relative to Node3D's origin
+
 
