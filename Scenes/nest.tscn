@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkig0nb7jecil"]
+
+[ext_resource type="Script" path="res://Nest.gd" id="1_q65vo"]
+[ext_resource type="PackedScene" uid="uid://c30luhtlotnvl" path="res://Scenes/branch.tscn" id="2_rw338"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_xac75"]
+
+[node name="Nest" type="Node3D"]
+script = ExtResource("1_q65vo")
+brickScene = ExtResource("2_rw338")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+transparency = 1.0
+mesh = SubResource("SphereMesh_xac75")
