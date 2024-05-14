@@ -5,24 +5,18 @@ var max_branches = 100
 @export var brickScene:PackedScene
 
 func _ready():
-	set_process_input(true)
+	pass  # No need to handle input in this script anymore
 
-func _input(event):
-	if event is InputEventKey and event.pressed and event.keycode == KEY_F:
-		add_random_branch()
-
-func add_random_branch():
+func add_branch_at_nest():
 	if branches_count < max_branches:
 		var branch = brickScene.instantiate()
 		var random_pos = generate_random_position()
-		branch.global_transform.origin = random_pos
-		var direction = (random_pos - Vector3.ZERO).normalized()
-		branch.look_at(random_pos + direction, Vector3.UP)
+		branch.global_transform.origin = global_transform.origin + random_pos
+		var direction = random_pos.normalized()
+		branch.look_at(global_transform.origin + random_pos + direction, Vector3.UP)
 		add_child(branch)
 		branches_count += 1
-		print("Branch added. Total branches: ", branches_count)
-
-
+		print("Branch added at nest. Total branches: ", branches_count)
 
 func generate_random_position():
 	var radius = randf_range(0.8, 1.2)  # Slightly vary the radius
@@ -33,5 +27,3 @@ func generate_random_position():
 	var y = height  # Lower variation in height to keep it flatter
 	var z = radius * sin(theta)
 	return Vector3(x, y, z)  # Return local position relative to Node3D's origin
-
-

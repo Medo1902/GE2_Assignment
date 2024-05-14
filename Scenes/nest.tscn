@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dkig0nb7jecil"]
 
-[ext_resource type="Script" path="res://Nest.gd" id="1_q65vo"]
+[ext_resource type="Script" path="res://Scripts/Nest.gd" id="1_q65vo"]
 [ext_resource type="PackedScene" uid="uid://c30luhtlotnvl" path="res://Scenes/branch.tscn" id="2_rw338"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_xac75"]
