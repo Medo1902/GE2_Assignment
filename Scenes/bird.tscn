@@ -98,4 +98,4 @@ skeleton = NodePath("../..")
 shape = SubResource("SphereShape3D_xipxv")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.37723)
+transform = Transform3D(1, 0, 0, 0, 0.791704, 0.610906, 0, -0.610906, 0.791704, 0, 0.994291, 1.37723)
