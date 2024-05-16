@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://cj8ecj4ihogk0"]
+
+[ext_resource type="Script" path="res://Scripts/UI.gd" id="1_f6n6i"]
+
+[sub_resource type="SystemFont" id="SystemFont_p3bf2"]
+font_names = PackedStringArray("Century Gothic")
+
+[sub_resource type="SystemFont" id="SystemFont_swgch"]
+font_names = PackedStringArray("Century Gothic")
+
+[sub_resource type="SystemFont" id="SystemFont_tuw5l"]
+font_names = PackedStringArray("Century Gothic")
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchor_right = 1.667
+anchor_bottom = 1.667
+offset_right = -1464.38
+offset_bottom = -853.216
+script = ExtResource("1_f6n6i")
+
+[node name="Label_Position" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 34.0
+offset_right = 462.0
+offset_bottom = 102.0
+theme_override_fonts/font = SubResource("SystemFont_p3bf2")
+theme_override_font_sizes/font_size = 30
+
+[node name="Label_State" type="Label" parent="."]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 103.0
+offset_right = 428.0
+offset_bottom = 170.0
+theme_override_fonts/font = SubResource("SystemFont_swgch")
+theme_override_font_sizes/font_size = 30
+
+[node name="Label_Exit" type="Label" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 183.0
+offset_right = 188.0
+offset_bottom = 242.0
+theme_override_fonts/font = SubResource("SystemFont_tuw5l")
+theme_override_font_sizes/font_size = 30
+text = "Exit: Q"
+
+[node name="Label_Exit2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 246.0
+offset_right = 188.0
+offset_bottom = 305.0
+theme_override_fonts/font = SubResource("SystemFont_tuw5l")
+theme_override_font_sizes/font_size = 30
+text = "Change Cam: C"
+
+[node name="Label_Exit3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 313.0
+offset_right = 290.0
+offset_bottom = 372.0
+theme_override_fonts/font = SubResource("SystemFont_tuw5l")
+theme_override_font_sizes/font_size = 30
+text = "Full Screen: F"
+
+[node name="Label_Exit4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 373.0
+offset_right = 293.0
+offset_bottom = 432.0
+theme_override_fonts/font = SubResource("SystemFont_tuw5l")
+theme_override_font_sizes/font_size = 30
+text = "Free Cam UP: R"
+
+[node name="Label_Exit5" type="Label" parent="."]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 438.0
+offset_right = 296.0
+offset_bottom = 497.0
+theme_override_fonts/font = SubResource("SystemFont_tuw5l")
+theme_override_font_sizes/font_size = 30
+text = "Free Cam Down: E"

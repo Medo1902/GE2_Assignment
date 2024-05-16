@@ -7,7 +7,7 @@ var nest_position = Vector3.ZERO
 var max_force = 0.1
 var max_speed = 5.0
 var min_speed = 2.0  # New minimum speed
-var delivery_radius = 2.0
+var delivery_radius = 4.0
 var bank_angle = 10.0
 
 # Reference to the AnimationPlayer

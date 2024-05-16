@@ -1,12 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://b0f35i8af7g8e"]
+[gd_scene load_steps=15 format=3 uid="uid://b0f35i8af7g8e"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_wf6k2"]
-[ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="2_b1dx4"]
 [ext_resource type="PackedScene" uid="uid://bqs4vjgj0cggq" path="res://Scenes/bird.tscn" id="2_s2uwr"]
+[ext_resource type="PackedScene" uid="uid://cj8ecj4ihogk0" path="res://Scenes/UI.tscn" id="2_ul6l7"]
 [ext_resource type="PackedScene" uid="uid://cdb5jv77h7nn4" path="res://Models/Tree lowpoly.blend" id="3_joot3"]
 [ext_resource type="PackedScene" uid="uid://dkig0nb7jecil" path="res://Scenes/nest.tscn" id="4_mnqxm"]
 [ext_resource type="PackedScene" uid="uid://c30luhtlotnvl" path="res://Scenes/branch.tscn" id="5_tdu0w"]
-[ext_resource type="AudioStream" uid="uid://dpu2mlayw0siy" path="res://Scenes/crickets-and-insects-112715.mp3" id="7_ycdvr"]
+[ext_resource type="AudioStream" uid="uid://cn3l85x70gs6j" path="res://Sounds/crickets-and-insects-112715.wav" id="7_nt2nl"]
+[ext_resource type="Script" path="res://Scripts/Camera3DFreeFly.gd" id="8_k2l54"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3jdpj"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -31,8 +32,12 @@ albedo_color = Color(0.0745098, 0.427451, 0.0823529, 1)
 material = SubResource("StandardMaterial3D_ewwi4")
 size = Vector2(100, 100)
 
-[node name="World" type="Node3D"]
+[node name="World" type="Node3D" node_paths=PackedStringArray("camera_above_nest", "camera_following_bird", "camera_free_fly")]
 script = ExtResource("1_wf6k2")
+camera_above_nest = NodePath("Camera3D")
+camera_following_bird = NodePath("Bird/Camera3DFollowingBird")
+camera_free_fly = NodePath("Camera3DFreeFly")
+ui_scene = ExtResource("2_ul6l7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3yu7c")
@@ -54,6 +59,9 @@ skeleton = NodePath("../..")
 [node name="Bird" parent="." instance=ExtResource("2_s2uwr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.118, 19.4567)
 
+[node name="Camera3DFollowingBird" type="Camera3D" parent="Bird"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1, 2)
+
 [node name="Tree lowpoly" parent="." instance=ExtResource("3_joot3")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.61491, 0.0500002, -3.61687)
 
@@ -61,10 +69,12 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.61491, 0.0500002, -3
 transform = Transform3D(-0.938391, 0.345576, 0, -0.345576, -0.938391, 0, 0, 0, 1, -3.08018, 4.82267, -4.206)
 branch_scene = ExtResource("5_tdu0w")
 
-[node name="Camera3D2" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.208697, 0.97798, 0, -0.97798, 0.208697, 3.95067, 1.72012, 1.79725)
-script = ExtResource("2_b1dx4")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("7_ycdvr")
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_nt2nl")
 autoplay = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.962023, -0.272969, 2.03378e-09, 0.0185613, 0.0654155, 0.997685, -0.272337, -0.959796, 0.0679978, -2.38338, 6.95655, -3.84798)
+
+[node name="Camera3DFreeFly" type="Camera3D" parent="."]
+script = ExtResource("8_k2l54")
