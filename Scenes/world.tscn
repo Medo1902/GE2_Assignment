@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://b0f35i8af7g8e"]
+[gd_scene load_steps=14 format=3 uid="uid://b0f35i8af7g8e"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_wf6k2"]
 [ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="2_b1dx4"]
 [ext_resource type="PackedScene" uid="uid://bqs4vjgj0cggq" path="res://Scenes/bird.tscn" id="2_s2uwr"]
 [ext_resource type="PackedScene" uid="uid://cdb5jv77h7nn4" path="res://Models/Tree lowpoly.blend" id="3_joot3"]
 [ext_resource type="PackedScene" uid="uid://dkig0nb7jecil" path="res://Scenes/nest.tscn" id="4_mnqxm"]
+[ext_resource type="PackedScene" uid="uid://c30luhtlotnvl" path="res://Scenes/branch.tscn" id="5_tdu0w"]
+[ext_resource type="AudioStream" uid="uid://dpu2mlayw0siy" path="res://Scenes/crickets-and-insects-112715.mp3" id="7_ycdvr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3jdpj"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -50,15 +52,19 @@ mesh = SubResource("PlaneMesh_k8tmt")
 skeleton = NodePath("../..")
 
 [node name="Bird" parent="." instance=ExtResource("2_s2uwr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.94528, 1.27912, -0.903182)
-
-[node name="Camera3D2" type="Camera3D" parent="Bird"]
-transform = Transform3D(1, 0, 0, 0, 0.208697, 0.97798, 0, -0.97798, 0.208697, 0.00539064, 0.441002, 2.70043)
-visible = false
-script = ExtResource("2_b1dx4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.118, 19.4567)
 
 [node name="Tree lowpoly" parent="." instance=ExtResource("3_joot3")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.61491, 0.0500002, -3.61687)
 
 [node name="Nest" parent="." instance=ExtResource("4_mnqxm")]
-transform = Transform3D(-0.956971, 0.290184, 0, -0.290184, -0.956971, 0, 0, 0, 1, -2.77034, 4.33134, -4.20555)
+transform = Transform3D(-0.938391, 0.345576, 0, -0.345576, -0.938391, 0, 0, 0, 1, -3.08018, 4.82267, -4.206)
+branch_scene = ExtResource("5_tdu0w")
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.208697, 0.97798, 0, -0.97798, 0.208697, 3.95067, 1.72012, 1.79725)
+script = ExtResource("2_b1dx4")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_ycdvr")
+autoplay = true

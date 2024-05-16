@@ -6,17 +6,28 @@ var target_branch = null
 var nest_position = Vector3.ZERO
 var max_force = 0.1
 var max_speed = 5.0
+var min_speed = 2.0  # New minimum speed
 var delivery_radius = 2.0
 var bank_angle = 10.0
 
+# Reference to the AnimationPlayer
+var animation_player: AnimationPlayer
+
 func _ready():
+	animation_player = $AnimationPlayer  # Adjust the path if necessary
 	var world_node = get_node("/root/World")
 	if world_node.has_node("Nest"):
 		nest_position = world_node.get_node("Nest").global_transform.origin
 	else:
 		print("Nest node not found!")
+	# Play the flap animation in a loop
+	animation_player.play("Flap")
 
 func _physics_process(delta):
+	print("Current State: ", current_state)
+	print("Current Velocity: ", velocity)
+	print("Current Position: ", global_transform.origin)
+
 	match current_state:
 		State.SEARCHING:
 			search_for_branch()
@@ -30,18 +41,19 @@ func _physics_process(delta):
 
 func rotate_and_bank(delta):
 	var target_dir = velocity.normalized()
-	if target_dir.length() > 0.01:
-		var current_dir = global_transform.basis.z.normalized()
-		if current_dir.dot(target_dir) > -0.99:
-			# Smooth rotation towards the target direction
-			var new_dir = current_dir.lerp(target_dir, delta * 5.0)
-			var look_target = global_transform.origin + new_dir * 10  # Create a target point in the direction to look at
-			look_at(look_target, Vector3.UP)
+	print("Target direction: ", target_dir)
+	var current_dir = -global_transform.basis.z.normalized()  # Note the minus sign, z is typically forward
+	print("Current direction: ", current_dir)
+	
+	if target_dir.length() > 0.01 and current_dir.dot(target_dir) > -0.99:
+		var new_dir = current_dir.lerp(target_dir, delta * 5.0)
+		var look_target = global_transform.origin + new_dir * 10
+		print("Look target: ", look_target)
+		look_at(look_target, Vector3.UP)
 
-			# Calculate the banking angle based on the steering force
-			var cross_product = current_dir.cross(target_dir).normalized()
-			var angle_diff = min(cross_product.length() * bank_angle * delta, deg_to_rad(bank_angle))
-			rotate_object_local(cross_product, angle_diff)
+		var angle_diff = current_dir.angle_to(target_dir)
+		var bank_direction = sign(current_dir.cross(target_dir).y)
+		rotate_object_local(Vector3.UP, angle_diff * bank_angle * delta * bank_direction)
 
 func seek(target_pos, delta):
 	apply_steering(target_pos, delta)
@@ -53,8 +65,12 @@ func apply_steering(target_pos, delta, is_arriving = false):
 	var target_vector = target_pos - global_transform.origin
 	var distance = target_vector.length()
 	var desired_velocity = target_vector.normalized()
-	if is_arriving and distance < 5:
-		desired_velocity *= max_speed * (distance / 5)
+
+	if is_arriving:
+		# Adjust max_speed based on distance to smoothly arrive at the target
+		var ramped_speed = max_speed * (distance / 5)  # '5' is a stopping distance parameter that can be adjusted
+		var clipped_speed = max(min(ramped_speed, max_speed), min_speed)  # Ensure speed doesn't drop below min_speed
+		desired_velocity *= clipped_speed
 	else:
 		desired_velocity *= max_speed
 
