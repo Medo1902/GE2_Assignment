@@ -1,16 +1,28 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqs4vjgj0cggq"]
+[gd_scene load_steps=14 format=3 uid="uid://bqs4vjgj0cggq"]
 
 [ext_resource type="Script" path="res://Scripts/bird.gd" id="1_86hl7"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mxjfv"]
+albedo_color = Color(0.815686, 0.854902, 0.298039, 1)
+
 [sub_resource type="SphereMesh" id="SphereMesh_dy32e"]
+material = SubResource("StandardMaterial3D_mxjfv")
 radius = 0.2
 height = 0.2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pe6hv"]
+albedo_color = Color(1, 0.541176, 1, 1)
+
 [sub_resource type="SphereMesh" id="SphereMesh_vt8r8"]
+material = SubResource("StandardMaterial3D_pe6hv")
 radius = 0.1
 height = 0.2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ve33u"]
+albedo_color = Color(0.796078, 0.956863, 0, 1)
+
 [sub_resource type="PrismMesh" id="PrismMesh_kdvaw"]
+material = SubResource("StandardMaterial3D_ve33u")
 size = Vector3(0.05, 0.1, 0.02)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_3bfno"]
@@ -42,7 +54,11 @@ _data = {
 "Flap": SubResource("Animation_783p5")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2p3ac"]
+albedo_color = Color(1, 0.501961, 1, 1)
+
 [sub_resource type="PrismMesh" id="PrismMesh_bd5g0"]
+material = SubResource("StandardMaterial3D_2p3ac")
 size = Vector3(0.05, 0.3, 0.2)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xipxv"]

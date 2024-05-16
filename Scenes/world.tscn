@@ -71,6 +71,7 @@ branch_scene = ExtResource("5_tdu0w")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_nt2nl")
+volume_db = -22.781
 autoplay = true
 
 [node name="Camera3D" type="Camera3D" parent="."]

@@ -1,6 +1,6 @@
 extends Camera3D
 
-@export var mouse_sensitivity: float = 0.1
+@export var mouse_sensitivity: float = 1
 @export var move_speed: float = 5.0
 @export var sprint_multiplier: float = 2.0  # Multiplier for sprinting
 
