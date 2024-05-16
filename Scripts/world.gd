@@ -1,10 +1,9 @@
 extends Node3D
 
-var branch_scene = preload("res://Scenes/branch.tscn")  # Update path as needed
+var branch_scene = preload("res://Scenes/branch.tscn")  
 var number_of_branches = 100
-var spawn_area = Vector2(100, 100)  # Define the area size for branch spawning
+var spawn_area = Vector2(100, 100)  
 
-# References to the cameras
 var cameras = []
 var current_camera_index = 0
 
@@ -12,30 +11,30 @@ var current_camera_index = 0
 @export var camera_following_bird: Camera3D
 @export var camera_free_fly: Camera3D
 @export var ui_scene: PackedScene
-var bird: Node3D  # Assign the bird node in the editor or find it in the scene
+var bird: Node3D  
 
 func _ready():
 	spawn_branches()
 
-	# Populate the cameras array
+	
 	cameras.append(camera_above_nest)
 	cameras.append(camera_following_bird)
 	cameras.append(camera_free_fly)
 
-	# Ensure all cameras are initialized
+	
 	for camera in cameras:
 		if not camera:
 			print("One or more Camera3D nodes are not initialized correctly!")
 			return
 
-	# Activate the first camera
+	
 	activate_camera(current_camera_index)
 
-	# Find the bird node if not assigned
+	
 	if not bird:
-		bird = get_node("/root/World/Bird")  # Adjust the path as necessary
+		bird = get_node("/root/World/Bird")  
 
-	# Load and add the UI scene
+	
 	if ui_scene:
 		var ui_instance = ui_scene.instantiate()
 		add_child(ui_instance)

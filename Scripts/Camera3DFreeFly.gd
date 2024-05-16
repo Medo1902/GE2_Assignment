@@ -1,31 +1,30 @@
 extends Camera3D
 
-@export var mouse_sensitivity: float = 1
+@export var rotation_speed: float = 20.0
 @export var move_speed: float = 5.0
-@export var sprint_multiplier: float = 2.0  # Multiplier for sprinting
+@export var sprint_multiplier: float = 2.0  
 
 var velocity = Vector3.ZERO
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _unhandled_input(event):
-	if event is InputEventMouseMotion:
-		rotate_camera(event.relative)
-	elif event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED else Input.MOUSE_MODE_VISIBLE)
 
 func _process(delta):
 	move_camera(delta)
-	if Input.is_action_just_pressed("ui_cance"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED else Input.MOUSE_MODE_CAPTURED)
+	rotate_camera(delta)
 
-func rotate_camera(relative_motion):
-	rotate_y(deg_to_rad(-relative_motion.x * mouse_sensitivity))
-	rotate_x(deg_to_rad(-relative_motion.y * mouse_sensitivity))
+func rotate_camera(delta):
+	if Input.is_action_pressed("ui_right"):
+		rotate_y(deg_to_rad(-rotation_speed * delta))
+	if Input.is_action_pressed("ui_left"):
+		rotate_y(deg_to_rad(rotation_speed * delta))
 
-	# Clamp the vertical rotation
-	rotation_degrees.x = clamp(rotation_degrees.x, -90, 90)
+	var new_x_rotation = rotation_degrees.x
+	rotation_degrees.x = clamp(new_x_rotation, -90, 90)
 
 func move_camera(delta):
 	velocity = Vector3.ZERO

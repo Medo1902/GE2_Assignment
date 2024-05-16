@@ -6,7 +6,7 @@ var target_branch = null
 var nest_position = Vector3.ZERO
 var max_force = 0.1
 var max_speed = 5.0
-var min_speed = 2.0  # New minimum speed
+var min_speed = 2.0  
 var delivery_radius = 4.0
 var bank_angle = 10.0
 
@@ -14,7 +14,7 @@ var bank_angle = 10.0
 var animation_player: AnimationPlayer
 
 func _ready():
-	animation_player = $AnimationPlayer  # Adjust the path if necessary
+	animation_player = $AnimationPlayer  
 	var world_node = get_node("/root/World")
 	if world_node.has_node("Nest"):
 		nest_position = world_node.get_node("Nest").global_transform.origin
@@ -42,7 +42,7 @@ func _physics_process(delta):
 func rotate_and_bank(delta):
 	var target_dir = velocity.normalized()
 	print("Target direction: ", target_dir)
-	var current_dir = -global_transform.basis.z.normalized()  # Note the minus sign, z is typically forward
+	var current_dir = -global_transform.basis.z.normalized() 
 	print("Current direction: ", current_dir)
 	
 	if target_dir.length() > 0.01 and current_dir.dot(target_dir) > -0.99:
@@ -67,9 +67,9 @@ func apply_steering(target_pos, delta, is_arriving = false):
 	var desired_velocity = target_vector.normalized()
 
 	if is_arriving:
-		# Adjust max_speed based on distance to smoothly arrive at the target
-		var ramped_speed = max_speed * (distance / 5)  # '5' is a stopping distance parameter that can be adjusted
-		var clipped_speed = max(min(ramped_speed, max_speed), min_speed)  # Ensure speed doesn't drop below min_speed
+		
+		var ramped_speed = max_speed * (distance / 5)  
+		var clipped_speed = max(min(ramped_speed, max_speed), min_speed)  
 		desired_velocity *= clipped_speed
 	else:
 		desired_velocity *= max_speed
